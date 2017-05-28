@@ -8,22 +8,26 @@
   </head>
 <body ng-app="NarrowItDownApp">
    <div class="container" ng-controller="NarrowItDownController as nidc">
-     <div class="row">
-    <h1>Narrow Down Your Chinese Menu Choice</h1>
+    <div class="row"> <!-- row 1 -->
+      <h1>Narrow Down Your Chinese Menu Choice</h1>
+      <form>
+        <div class="form-group">
+          <input type="text" placeholder="search term" class="form-control" ng-model="nidc.searchTerm">
+        </div>
+        <div class="form-group narrow-button">
+          <button type="submit" class="btn btn-primary"  ng-click="nidc.doSearch();">Narrow It Down For Me!</button>
+        </div>
+      </form>
+    </div> <!-- row 1 -->
 
-    <div class="form-group">
-      <input type="text" placeholder="search term" class="form-control" ng-model="nidc.searchTerm">
-    </div>
-    <div class="form-group narrow-button">
-      <button class="btn btn-primary" ng-click="nidc.doSearch();">Narrow It Down For Me!</button>
-    </div>
-    </div>
-    <div class="row"> 
-    <found-items items="nidc.found" on-remove="nidc.removeItem(index)"></found-items>
-    </div>
+    <div class="row"> <!-- row 2 -->
+      <found-items items="nidc.found" on-remove="nidc.removeItem(index)"></found-items>
+    </div> <!-- row 2 -->
 
-  </div>
+  </div> <!-- ng-controller=NarrowItDownController as nidc -->
+  
   <script src="angular.min.js"></script>
   <script src="app.js"></script>
+
 </body>
 </html>

@@ -1,12 +1,11 @@
-<table ng-if="items.length > 0;">
-    <thead>
-        <th>Name</th><th>Short name</th><th>Description</th>
-    </thead>
+<!-- found-items custom directive -->
+<table ng-if="items.length > 0;" class="table table-bordered">
+    <thead> <th>Name</th><th>Short name</th><th>Description</th><th></th> </thead>
     <tr ng-repeat="item in items">
         <td>{{item.name}}</td> 
         <td>{{item.short_name}}</td>
         <td>{{item.description}}</td>
-        <td><button ng-click="onRemove({index: $index})">Don't want this one!</Button></td>
+        <td><button type="button" class="btn btn-default btn-xs btn-warning" ng-click="onRemove({index: $index})">Don't want this one!</Button></td>
     </tr>
 </table>
-<span ng-if="items.length == 0;">Nothing found</span>
+<div ng-if="items.length == 0;">Nothing found</div>

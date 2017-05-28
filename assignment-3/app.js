@@ -10,12 +10,12 @@ angular.module('NarrowItDownApp', [])
 function FoundItemsDirective() {
     console.log("FoundItemsDirective")
     var ddo = {
-        templateUrl : "foundItems.html",
+        templateUrl : 'foundItems.html',
+        restrict: 'E',
         scope: {
-            items: '<',
+            items: '<', 
             onRemove: '&'
         }
-
     };
     return ddo;
 }
@@ -39,6 +39,9 @@ function NarrowItDownController(menuSearch) {
     }
 }
 
+// Retrieves the menu from  the menu server and filters the
+// list to those incuding a searchTerm.
+// Return the whole list if searchTerm is not defined.
 MenuSearchService.$inject = ['$http', 'ApiBasePath'];
 function MenuSearchService($http, ApiBasePath) {
     var service = this;
@@ -63,17 +66,18 @@ function MenuSearchService($http, ApiBasePath) {
         })
         return response
     }
-
 }
 
+// Used searching for one string (term) inside another (toSearch).
+// Ignores case and leading and trailing spaces.
 function isInString(toSearch, term) {
- var retval = false
- if (toSearch !== undefined && term !== undefined) {
-   var cleanToSearch = toSearch.trim().toLowerCase()
-   var cleanTerm = term.trim().toLowerCase()
-   retval = cleanToSearch.includes(term)  
- }
- return retval
+    var retval = false
+    if (toSearch !== undefined && term !== undefined) {
+        var cleanToSearch = toSearch.trim().toLowerCase()
+        var cleanTerm = term.trim().toLowerCase()
+        retval = cleanToSearch.includes(term)  
+    }
+    return retval
 }
 
 })()
