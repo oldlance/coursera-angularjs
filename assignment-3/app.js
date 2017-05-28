@@ -4,7 +4,21 @@
 angular.module('NarrowItDownApp', [])
 .controller('NarrowItDownController', NarrowItDownController)
 .service('MenuSearchService', MenuSearchService)
+.directive('foundItems', FoundItemsDirective)
 .constant('ApiBasePath', "https://davids-restaurant.herokuapp.com");
+
+function FoundItemsDirective() {
+    console.log("FoundItemsDirective")
+    var ddo = {
+        templateUrl : "foundItems.html",
+        scope: {
+            items: '<',
+            onRemove: '&'
+        }
+
+    };
+    return ddo;
+}
 
 NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController(menuSearch) {
@@ -13,10 +27,15 @@ function NarrowItDownController(menuSearch) {
     self.searchTerm = "";
     self.found = [];
 
-    this.doSearch = function() {
+    self.doSearch = function() {
         menuSearch.getMatchedMenuItems(self.searchTerm).then(function (result){
             self.found = result
         }).catch(function(result){ console.log("An error occurred: ", result)}) 
+    }
+
+    self.removeItem = function(index) {
+        console.log("Asked to remove item number: ", index)
+        self.found.splice(index,1)
     }
 }
 
