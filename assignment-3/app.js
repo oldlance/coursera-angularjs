@@ -75,7 +75,7 @@ function isInString(toSearch, term) {
     if (toSearch !== undefined && term !== undefined) {
         var cleanToSearch = toSearch.trim().toLowerCase()
         var cleanTerm = term.trim().toLowerCase()
-        retval = cleanToSearch.includes(term)  
+        retval = cleanToSearch.includes(cleanTerm)  
     }
     return retval
 }
