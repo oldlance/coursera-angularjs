@@ -8,7 +8,6 @@ angular.module('NarrowItDownApp', [])
 .constant('ApiBasePath', "https://davids-restaurant.herokuapp.com");
 
 function FoundItemsDirective() {
-    console.log("FoundItemsDirective")
     var ddo = {
         templateUrl : 'foundItems.html',
         restrict: 'E',
@@ -75,7 +74,9 @@ function isInString(toSearch, term) {
     if (toSearch !== undefined && term !== undefined) {
         var cleanToSearch = toSearch.trim().toLowerCase()
         var cleanTerm = term.trim().toLowerCase()
-        retval = cleanToSearch.includes(cleanTerm)  
+        if (cleanTerm.length > 0) {
+            retval = cleanToSearch.includes(cleanTerm) 
+        }
     }
     return retval
 }
