@@ -11,7 +11,6 @@ function MenuDataService($http, ApiBaseUrl) {
     var service = this;
 
     service.getAllCategories = function() {
-        console.log("In getAllCategories()", ApiBaseUrl);
         return $http(
             {
               method: 'GET',
@@ -24,7 +23,6 @@ function MenuDataService($http, ApiBaseUrl) {
     };
 
     service.getItemsForCategory = function(categoryShortName) {
-        console.log("In getItemsForCategory()", categoryShortName, ApiBaseUrl);
         return $http(
             {
                 method: 'GET',
