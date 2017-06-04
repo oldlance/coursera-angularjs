@@ -12,7 +12,6 @@
 
         self.categories = categories;
 
-        console.log("In MainCategoriesController()");
 
         self.$onInit = function () {
             console.log("Setting state eror handlers");

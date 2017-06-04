@@ -1,5 +1,7 @@
 <h3>{{childList.categoryName}} Menu</h3>
-
+<div ng-if="childList.specialInstructions">
+<p class="bg-info">{{childList.specialInstructions}}</p>
+</div>
 <ul>
     <li  ng-repeat="item in childList.items">
         {{item.name}}

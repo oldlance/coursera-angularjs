@@ -7,7 +7,6 @@
     RoutesConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
     function RoutesConfig($stateProvider, $urlRouterProvider) {
 
-        console.log("IN RoutesConfig() ...");
         // Redirect to home page is unrecognised route encountered
         $urlRouterProvider.otherwise('/');
 
@@ -21,23 +20,18 @@
                 templateUrl: 'src/templates/main-categories.template.html',
                 resolve: {
                     categories: ['MenuDataService', function(MenuDataService) {
-                        console.log("In categoryList state resolver");
                         return MenuDataService.getAllCategories();
                     }]
                 },
                 controller: 'MainCategoriesController as mainList'
             })
             .state('categoryList.items', {
-                url: '/items',
+                url: '/category/{categoryId}',
                 templateUrl: 'src/templates/items.template.html',
                 resolve: {
                     items: ['MenuDataService', '$stateParams', function(MenuDataService, $stateParams) {
-                        console.log("In categoryList.items state resolver ...");
-                        return MenuDataService.getItemsForCategory($stateParams.category.short_name);
+                        return MenuDataService.getItemsForCategory($stateParams.categoryId);
                     }]
-                },
-                params: {
-                    category: null
                 },
                 controller: 'ItemsController as childList'
             });

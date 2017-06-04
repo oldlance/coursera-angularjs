@@ -9,7 +9,6 @@ angular.module('data')
 MenuDataService.$inject = ['$http', 'ApiBaseUrl'];
 function MenuDataService($http, ApiBaseUrl) {
     var service = this;
-    console.log("In MenuDataService() ")
 
     service.getAllCategories = function() {
         console.log("In getAllCategories()", ApiBaseUrl);
@@ -18,10 +17,9 @@ function MenuDataService($http, ApiBaseUrl) {
               method: 'GET',
               url: (ApiBaseUrl + '/categories.json')
             }).then(function(response) {
-                console.log("getAllCategories Response is: ", response);
                 return response.data;
             }).catch(function(response) {
-                console.log("Error in getAllCategories(): ", response);
+                console.error("Error in getAllCategories(): ", response);
             });
     };
 
@@ -33,10 +31,9 @@ function MenuDataService($http, ApiBaseUrl) {
                 url: (ApiBaseUrl + '/menu_items.json'),
                 params: { category: categoryShortName}
             }).then(function(response) {
-                console.log("getItemsForCategory Response is: ", response);
-                return response.data.menu_items;
+                return response.data;
             }).catch(function(response) {
-                console.log("Error in getItemsForCateory(): ", response);
+                console.error("Error in getItemsForCateory(): ", response);
             });
     }
 };
