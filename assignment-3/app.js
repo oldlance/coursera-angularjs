@@ -27,15 +27,19 @@ function NarrowItDownController(menuSearch) {
     self.found = [];
 
     self.doSearch = function() {
-        menuSearch.getMatchedMenuItems(self.searchTerm).then(function (result){
-            self.found = result
-        }).catch(function(result){ console.log("An error occurred: ", result)}) 
-    }
+        menuSearch.getMatchedMenuItems(self.searchTerm)
+          .then(function (result) {
+            self.found = result;
+          })
+          .catch(function(result) {
+            console.log("An error occurred: ", result);
+          });
+    };
 
     self.removeItem = function(index) {
-        console.log("Asked to remove item number: ", index)
-        self.found.splice(index,1)
-    }
+        console.log("Asked to remove item number: ", index);
+        self.found.splice(index,1);
+    };
 }
 
 // Retrieves the menu from  the menu server and filters the
