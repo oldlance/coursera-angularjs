@@ -18,17 +18,15 @@
         };
 
         service.getSignUpState = function () {
-            console.log("Getting sign up state", signUpState);
             return signUpState;
        };
 
        service.setSignUpState = function (state) {
-           console.log("setting sign up state to: ", state);
            signUpState = Object.assign({}, state);
        };
 
        service.getMenuItemForShortName = function(shortName) {
-            return $http.get(ApiPath + '/menu_items/' + shortName + '.json');
+           return $http.get(ApiPath + '/menu_items/' + shortName + '.json');
        }
 
     }

@@ -1,0 +1,40 @@
+<div class="container">
+    <h2>My Information</h2> 
+    <div ng-if="infoCtrl.hasData()">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td><span>First name:</span></td><td>{{infoCtrl.myInfo.firstName}}</td>
+                </tr>
+                <tr>
+                    <td><span>Last name:</span></td><td>{{infoCtrl.myInfo.lastName}}</td>
+                </tr>
+                <tr>
+                    <td><span>Email address:</span></td><td>{{infoCtrl.myInfo.emailAddress}}</td>
+                </tr>
+                <tr>
+                    <td><span>Phone number:</span></td><td>{{infoCtrl.myInfo.phoneNumber}}</td>
+                </tr>
+                <tr>
+                    <td><span>Favourite Dish:</span></td><td>{{infoCtrl.myInfo.favouriteDishId}}</td>
+                </tr>
+                <tr ng-if="infoCtrl.hasFavouriteDishId()">
+                    <td><img class="img-responsive" width="250" height="150" ng-src="{{infoCtrl.basePath}}/images/{{infoCtrl.favouriteDish.short_name}}.jpg" alt="{{infoCtrl.favouriteDish.name}}"></td>
+                    <td>
+                        <div class="menu-item-price">{{infoCtrl.favouriteDish.price_small | currency}}<span> {{infoCtrl.favouriteDish.small_portion_name}}</span> {{infoCtrl.favouriteDish.price_large | currency}} <span>{{infoCtrl.favouriteDish.large_portion_name}}</span></div>
+                        </div>
+                        <div class="menu-item-description col-sm-7">
+                        <h3 class="menu-item-title">{{infoCtrl.favouriteDish.name}}</h3>
+                        <p class="menu-item-details">{{infoCtrl.favouriteDish.description}}</p>
+                        </div>
+                    </td>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-if="!infoCtrl.hasData()">
+        <span>Not signed up yet.  <a ui-sref="public.signup">Sign up Now!</a></span>
+    </div>
+
+</div>
