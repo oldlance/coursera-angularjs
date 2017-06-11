@@ -26,9 +26,22 @@ function routeConfig ($stateProvider) {
       controllerAs: 'menuCtrl',
       resolve: {
         menuCategories: ['MenuService', function (MenuService) {
+          console.log("in public.menu resolve");
           return MenuService.getCategories();
         }]
       }
+    })
+    .state('public.signup', {
+      url: '/menu/signup',
+      templateUrl: 'src/public/sign-up/sign-up-form.html',
+      controller: 'SignUpFormController',
+      controllerAs: 'signUpCtrl'
+      // resolve: {
+        // signUpInfo: ['SignUpService', function(SignUpService) {
+          // console.log("in public.signup resolve");
+          // return SignUpService.signUpInfo;
+        //  }]
+      // }
     })
     .state('public.menuitems', {
       url: '/menu/{category}',
@@ -37,6 +50,7 @@ function routeConfig ($stateProvider) {
       controllerAs: 'menuItemsCtrl',
       resolve: {
         menuItems: ['$stateParams','MenuService', function ($stateParams, MenuService) {
+          console.log("in public.menuitems resolve");
           return MenuService.getMenuItems($stateParams.category);
         }]
       }

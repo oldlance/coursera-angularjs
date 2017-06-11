@@ -1,0 +1,76 @@
+<div class="container">
+   <h2> Newsletter Sign-Up</h2> 
+    
+    <form name="signUpForm" novalidate>
+        <fieldset>
+            <!--<legend>Newsletter Sign-Up</legend>-->
+            <!--Firstname-->
+            <div class="form-group">
+                <label>First name</label>
+                <input class="form-control" type="text" placeholder="Enter your first name"
+                    name="firstName"
+                    ng-model="signUpCtrl.signUpInfo.firstName"
+                    required>
+                    <span
+                        ng-if="signUpForm.firstName.$error.required && signUpForm.firstName.$touched">
+                        Please enter your first name
+                    </span>
+            </div>
+
+            <!--Lastname-->
+            <div class="form-group">
+                <label>Last name</label>
+                <input class="form-control" type="text" placeholder="Enter your last name"
+                    name="lastName"
+                    ng-model="signUpCtrl.signUpInfo.lastName"
+                    required>
+                    <span
+                        ng-if="signUpForm.lastName.$error.required && signUpForm.lastName.$touched">
+                        Please enter your last name
+                    </span>
+            </div>
+
+            <!--Email address-->
+            <div class="form-group">
+                <label>Email address</label>
+                <input class="form-control" type="email" placeholder="Enter your email address"
+                    name="emailAddress"
+                    ng-model="signUpCtrl.signUpInfo.emailAddress"
+                    required>
+                    <span
+                        ng-if="(signUpForm.emailAddress.$error.required || signUpForm.emailAddress.$invalid) && signUpForm.emailAddress.$touched">
+                        Please enter a valid email address {{signUpForm.emailAddress.$error}}
+                    </span>
+            </div>
+
+            <!--phone number-->
+            <div class="form-group">
+                <label>Phone number</label>
+                <input class="form-control" type="text" placeholder="Enter your phone number (###-###-####)"
+                    pattern="(\d{3})-(\d{3})-(\d{4})"
+                    name="phoneNumber"
+                    ng-model="signUpCtrl.signUpInfo.phoneNumber">
+                    <span
+                        ng-if="(signUpForm.phoneNumber.$invalid || signUpForm.phoneNumber.$error.pattern) && signUpForm.phoneNumber.$touched">
+                        Please enter a valid phone number
+                    </span>
+            </div>
+
+            <!--favourite Menu Id-->
+            <div class="form-group">
+                <label>Favourite dish</label>
+                <input class="form-control" type="text" placeholder="Enter the menu code of your favourite dish (eg A1)"
+                    ng-model="signUpCtrl.signUpInfo.favouriteDishId">
+                <span
+                    ng-if="!signUpCtrl.isFavouriteDishIdValid">
+                    No such menu number exists
+                </span>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary" ng-disabled="signUpForm.$invalid" ng-click="signUpCtrl.submit(); signUpForm.$setPristine();">Submit</button>
+            </div>
+        </fieldset>
+        <span ng-if="signUpForm.$pristine && signUpCtrl.done">Your information has been saved</span>
+    <form>
+</div>
